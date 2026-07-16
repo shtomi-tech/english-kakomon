@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>高校2年生 2026年度 7月8月 理解度確認テスト | 英語過去問演習</title>
+  <link rel="stylesheet" href="./static/styles.css">
+  <script defer src="./static/data.js"></script>
+  <script defer src="./static/app.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <p class="eyebrow">ENGLISH / PAST EXAM</p>
+      <h1>英語過去問演習</h1>
+    </div>
+    <div class="top-actions">
+      <button id="continueBtn" class="primary-cta" type="button">
+        <span class="cta-kicker">推奨</span>
+        <span class="cta-label">つづきから解く</span>
+        <span id="continueTarget" class="cta-target">次の未完了問題へ</span>
+      </button>
+      <details class="utility-menu">
+        <summary>その他</summary>
+        <div class="utility-menu-body">
+          <section class="utility-section">
+            <p class="utility-label">OUTPUT</p>
+            <button id="printBtn" class="ghost utility-action" type="button">現在の大問を印刷</button>
+          </section>
+          <section class="utility-section danger-zone">
+            <p class="utility-label">学習データ</p>
+            <p>解答と進捗をこの端末から削除します。</p>
+            <button id="resetBtn" class="ghost danger utility-action" type="button">すべての学習記録を削除</button>
+          </section>
+        </div>
+      </details>
+    </div>
+    <div class="progress-strip" aria-label="全体の進捗">
+      <div>
+        <span class="eyebrow">PROGRESS</span>
+        <strong id="progressText">0 / 0</strong>
+      </div>
+      <div class="meter" aria-hidden="true"><i id="progressFill"></i></div>
+      <button id="reviewBtn" class="review-action ghost" type="button">間違えた問題を復習</button>
+    </div>
+  </header>
+
+  <main class="shell">
+    <aside class="sidebar">
+      <section class="panel source-panel">
+        <p class="eyebrow">SOURCE</p>
+        <h2>高校2年生 2026年度 7月8月 理解度確認テスト</h2>
+        <p>英語・写真16枚とリスニング音源から作成</p>
+      </section>
+      <nav id="sectionList" class="section-list" aria-label="大問一覧"></nav>
+    </aside>
+
+    <section class="workspace">
+      <div id="sectionView"></div>
+    </section>
+  </main>
+
+  <dialog id="imageDialog" class="image-dialog">
+    <div class="dialog-head">
+      <div>
+        <p class="eyebrow">ORIGINAL PAGE</p>
+        <h2 id="imageTitle">原画像</h2>
+      </div>
+      <button id="closeImageBtn" class="ghost" type="button">閉じる</button>
+    </div>
+    <img id="imagePreview" alt="問題冊子の原画像">
+  </dialog>
+</body>
+</html>
