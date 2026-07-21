@@ -103,6 +103,11 @@ h1, h2, h3, p { margin-top: 0; }
 .passage-label { margin-bottom: 8px; color: var(--clay); font: 700 10px var(--mono); letter-spacing: .12em; }
 .passage-text { max-width: 68ch; margin: 0; color: #24221f; font-family: Georgia, "Times New Roman", "Yu Mincho", serif; font-size: clamp(17px, 1.25vw, 19px); line-height: 1.95; letter-spacing: .008em; text-wrap: pretty; }
 .speaker { display: inline-block; min-width: 52px; margin-right: 6px; color: var(--clay); font: 700 12px var(--mono); letter-spacing: .03em; text-transform: uppercase; }
+.passage-mark { white-space: nowrap; }
+.passage-mark .mark-no { margin-right: 1px; color: var(--clay); font: 700 11px var(--mono); vertical-align: sub; }
+.passage-mark .mark-text { border-bottom: 2px solid var(--ink); padding-bottom: 1px; font-weight: 600; }
+.passage-blank { display: inline-block; border-bottom: 2px solid var(--ink); padding: 0 .35em; font-weight: 600; white-space: nowrap; }
+.passage-blank .blank-no { padding: 0 .5em; font: 700 13px var(--mono); }
 .has-passage .question-prompt { line-height: 1.65; }
 .has-passage .choice { font-size: 15px; line-height: 1.65; }
 .question-list { display: flex; flex-direction: column; gap: 16px; }

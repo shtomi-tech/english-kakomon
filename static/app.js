@@ -201,7 +201,9 @@
         .replace(/\s+(?=(?:Akira|Mika):)/g, "<br><br>")
         .replace(/\b(Akira|Mika):/g, '<strong class="speaker">$1</strong>');
     }
-    return text;
+    return text
+      .replace(/\{\{u(\d+)\|([^}]+)\}\}/g, '<span class="passage-mark"><span class="mark-no">($1)</span><span class="mark-text">$2</span></span>')
+      .replace(/\{\{b(\d+)\}\}/g, '<span class="passage-blank">（<span class="blank-no">$1</span>）</span>');
   }
 
   function passagePanelHtml(section) {
