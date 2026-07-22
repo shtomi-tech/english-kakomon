@@ -8,14 +8,19 @@
   const $$ = (selector, root = document) => Array.from(root.querySelectorAll(selector));
 
   let state = loadState();
-  let currentSectionId = localStorage.getItem(LAST_SECTION_KEY) || firstPracticeSection().id;
+  let currentSectionId = storedSectionId() || firstPracticeSection().id;
   let reviewOnly = false;
   const choiceLabels = ["ア", "イ", "ウ", "エ", "オ", "カ", "キ", "ク"];
   const sectionGroups = [
     { id: "listen", step: "STEP 1", label: "聞く", sectionIds: ["I"] },
     { id: "language", step: "STEP 2", label: "文法・語法", sectionIds: ["II-A", "II-B", "II-C"] },
-    { id: "reading", step: "STEP 3", label: "読む・書く", sectionIds: ["III-A", "III-B", "IV-A", "IV-B"] },
+    { id: "reading", step: "STEP 3", label: "読む・書く", sectionIds: ["III", "IV"] },
   ];
+
+  function storedSectionId() {
+    const id = localStorage.getItem(LAST_SECTION_KEY);
+    return exam.sections.some((section) => section.id === id) ? id : null;
+  }
 
   function firstPracticeSection() {
     return exam.sections.find((section) => section.questions.length) || exam.sections[0];

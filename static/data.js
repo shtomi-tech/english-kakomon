@@ -75,12 +75,12 @@ window.ENGLISH_EXAM = {
       ]
     },
     {
-      id: "III-A",
-      label: "第III問 A",
+      id: "III",
+      label: "第III問",
       title: "長文読解：Slovakia’s Car Industry",
-      description: "本文を読み、最も適切な選択肢を選びます。",
+      description: "本文を読み、(A)の選択問題と(B)の記述問題に答えます。本文は左（画面が狭いときは上）に表示され、どの設問からも参照できます。",
       passageType: "dialogue",
-      sourceImages: ["PXL_20260716_094811328.jpg", "PXL_20260716_094818544.jpg", "PXL_20260716_094832292.jpg", "PXL_20260716_094847793.jpg"],
+      sourceImages: ["PXL_20260716_094811328.jpg", "PXL_20260716_094818544.jpg", "PXL_20260716_094832292.jpg", "PXL_20260716_094847793.jpg", "PXL_20260716_094914936.jpg", "PXL_20260716_095149090.jpg"],
       passage: [
         "Akira: Did you know {{u1|Slovakia}} makes a huge number of cars? Mika: Slovakia? I only know it’s in Europe. Is it big? Akira: Not really. It’s a small country in Central Europe, with about 5.4 million people. But it produces close to one million cars every year.",
         "Mika: One million? That sounds impossible for such a small country. Akira: It surprised me too. The key point is “per capita.” Slovakia makes more cars per person than any other country in the world.",
@@ -93,56 +93,38 @@ window.ENGLISH_EXAM = {
         "Akira: That’s a good way to put it. Slovakia can be proud of being the world’s top car producer per capita, but to keep that position, it has to keep learning and updating its industry. Mika: Interesting. It shows that size isn’t everything—strategy, skills, and good planning can make a country {{b6}}."
       ],
       questions: [
-        { id: "III-A-1", prompt: "下線部(1)に関して、スロバキアの説明として最も適切なものを選べ。", options: ["Roughly one million people live in Slovakia.", "Slovakia produces nearly 5.4 million cars every year.", "The annual number of cars bought in Slovakia is close to one million.", "The population of Slovakia is approximately 5.4 million."], answer: 3, explanation: "本文に人口は約540万人とあります。約100万台は年間の自動車生産台数です。" },
-        { id: "III-A-2", prompt: "下線部(2) plants の意味に最も近いものを選べ。", options: ["cars", "factories", "gardens", "trees"], answer: 1, explanation: "自動車会社が持つ large plants は『大規模な工場』です。" },
-        { id: "III-A-3", prompt: "空所(3)に入るのに最も適切なものを選べ。", options: ["education", "generation", "location", "tradition"], answer: 2, explanation: "直後に『ヨーロッパの中心にある』という地理的利点が説明されています。" },
-        { id: "III-A-4", prompt: "下線部(4) ecosystem の意味に最も近いものを選べ。", options: ["a government program that directly pays workers in car factories", "a group of related businesses that compete with car companies", "a natural environment where many kinds of plants and animals live together", "a network of related businesses and services that support the car industry"], answer: 3, explanation: "部品・物流・運輸・整備など、自動車産業を支える関連企業のネットワークを指します。" },
-        { id: "III-A-5", prompt: "下線部(5) challenges の具体的内容として最も適切なものを選べ。", options: ["Salaries in car manufacturing are above the national average.", "Slovakia must keep pace with rapid changes in the global car industry.", "Slovakia needs to resist new trends in the global car industry.", "The government has difficulty attracting enough skilled workers."], answer: 1, explanation: "EV・自動化・自動運転などの急速な変化への適応が課題です。" },
-        { id: "III-A-6", prompt: "空所(6)に入るのに最も適切なものを選べ。", options: ["stand by", "stand for", "stand out", "stand up"], answer: 2, explanation: "stand out は『際立つ、目立つ』。" },
-        { id: "III-A-7", prompt: "本文の内容と一致するものを選べ。", options: ["High wages in car manufacturing help improve people’s living standards.", "Labor costs are higher than in Western Europe.", "Slovakia makes more cars in total than any other country.", "Government incentives are offered exclusively to domestic companies."], answer: 0, explanation: "自動車製造の賃金は国内平均より高く、生活水準の改善につながるとあります。" }
+        { id: "III-A-1", prompt: "【A 問1】下線部(1)に関して、スロバキアの説明として最も適切なものを選べ。", options: ["Roughly one million people live in Slovakia.", "Slovakia produces nearly 5.4 million cars every year.", "The annual number of cars bought in Slovakia is close to one million.", "The population of Slovakia is approximately 5.4 million."], answer: 3, explanation: "本文に人口は約540万人とあります。約100万台は年間の自動車生産台数です。" },
+        { id: "III-A-2", prompt: "【A 問2】下線部(2) plants の意味に最も近いものを選べ。", options: ["cars", "factories", "gardens", "trees"], answer: 1, explanation: "自動車会社が持つ large plants は『大規模な工場』です。" },
+        { id: "III-A-3", prompt: "【A 問3】空所(3)に入るのに最も適切なものを選べ。", options: ["education", "generation", "location", "tradition"], answer: 2, explanation: "直後に『ヨーロッパの中心にある』という地理的利点が説明されています。" },
+        { id: "III-A-4", prompt: "【A 問4】下線部(4) ecosystem の意味に最も近いものを選べ。", options: ["a government program that directly pays workers in car factories", "a group of related businesses that compete with car companies", "a natural environment where many kinds of plants and animals live together", "a network of related businesses and services that support the car industry"], answer: 3, explanation: "部品・物流・運輸・整備など、自動車産業を支える関連企業のネットワークを指します。" },
+        { id: "III-A-5", prompt: "【A 問5】下線部(5) challenges の具体的内容として最も適切なものを選べ。", options: ["Salaries in car manufacturing are above the national average.", "Slovakia must keep pace with rapid changes in the global car industry.", "Slovakia needs to resist new trends in the global car industry.", "The government has difficulty attracting enough skilled workers."], answer: 1, explanation: "EV・自動化・自動運転などの急速な変化への適応が課題です。" },
+        { id: "III-A-6", prompt: "【A 問6】空所(6)に入るのに最も適切なものを選べ。", options: ["stand by", "stand for", "stand out", "stand up"], answer: 2, explanation: "stand out は『際立つ、目立つ』。" },
+        { id: "III-A-7", prompt: "【A 問7】本文の内容と一致するものを選べ。", options: ["High wages in car manufacturing help improve people’s living standards.", "Labor costs are higher than in Western Europe.", "Slovakia makes more cars in total than any other country.", "Government incentives are offered exclusively to domestic companies."], answer: 0, explanation: "自動車製造の賃金は国内平均より高く、生活水準の改善につながるとあります。" },
+        { id: "III-B-1", type: "fields", prompt: "【B 問1】So, the car industry has [ c　　 ] many jobs [ i　　 ] as well.", support: "本文中の波線部「つまり、自動車産業は、間接的にもたくさんの仕事を生み出しているのね。」に、ほぼ相当する意味になるようにします。与えられた文字で始まる語を、各空所に1語ずつ入れてください。", fields: [{label:"c...",answers:["created"]},{label:"i...",answers:["indirectly"]}], explanation: "『自動車産業は間接的にも多くの仕事を生み出した』なので created / indirectly。" },
+        { id: "III-B-2", type: "fields", prompt: "【B 問2】『さまざまな要因により、日本の1人当たりのGDPは比較的低い。』", support: "Japan’s GDP [ 2語 ] is relatively low, [ 1語 ] to a variety of factors.\n※1つ目の空所（2語）は、本文にある語句を必ず用いてください。", fields: [{label:"2語",answers:["per capita"]},{label:"1語",answers:["due"]}], explanation: "本文中の per capita と、due to を用います。" }
       ]
     },
     {
-      id: "III-B",
-      label: "第III問 B",
-      title: "長文読解：記述",
-      description: "第III問Aの本文を使う記述問題です。",
-      sourceImages: ["PXL_20260716_094914936.jpg", "PXL_20260716_095149090.jpg"],
-      questions: [
-        { id: "III-B-1", type: "fields", prompt: "So, the car industry has [ c　　 ] many jobs [ i　　 ] as well.", support: "第III問Aの本文中の波線部「つまり、自動車産業は、間接的にもたくさんの仕事を生み出しているのね。」に、ほぼ相当する意味になるようにします。与えられた文字で始まる語を、各空所に1語ずつ入れてください。", fields: [{label:"c...",answers:["created"]},{label:"i...",answers:["indirectly"]}], explanation: "『自動車産業は間接的にも多くの仕事を生み出した』なので created / indirectly。" },
-        { id: "III-B-2", type: "fields", prompt: "『さまざまな要因により、日本の1人当たりのGDPは比較的低い。』", support: "Japan’s GDP [ 2語 ] is relatively low, [ 1語 ] to a variety of factors.\n※1つ目の空所（2語）は、第III問Aの本文にある語句を必ず用いてください。", fields: [{label:"2語",answers:["per capita"]},{label:"1語",answers:["due"]}], explanation: "本文中の per capita と、due to を用います。" }
-      ]
-    },
-    {
-      id: "IV-A",
-      label: "第IV問 A",
+      id: "IV",
+      label: "第IV問",
       title: "長文読解：Time Perception",
-      description: "子どもと大人で時間の感じ方が異なる理由を扱う文章です。",
+      description: "子どもと大人で時間の感じ方が異なる理由を扱う文章です。(A)の選択問題と(B)の記述問題に答えます。",
       passageLabels: ["INTRO", "MEMORY", "ATTENTION", "EMOTION", "CONCLUSION"],
-      sourceImages: ["PXL_20260716_094947375.jpg", "PXL_20260716_094954633.jpg", "PXL_20260716_095111710.jpg"],
+      sourceImages: ["PXL_20260716_094947375.jpg", "PXL_20260716_094954633.jpg", "PXL_20260716_095111710.jpg", "PXL_20260716_095026343.jpg"],
       passage: [
         "Children often say that summer vacation feels like it lasts forever, while adults feel that the same amount of time disappears in a flash. Research in cognitive psychology and neuroscience suggests that children and adults perceive the passage of time in different ways.",
         "One major factor is memory. Children have less life experience, so many daily events feel new to them: a first school trip, a new sport, a new friend group, or even a new route home. When experiences are novel, the brain tends to store them with more detail. Later, when children look back, the period feels ‘long’ because it contains many distinct memories. Adults, however, often have more routine in their lives. If many days are similar, fewer clear memory ‘markers’ are created, and time can feel shorter in hindsight.",
         "Attention matters in how time feels in the moment. Children usually focus more on what is happening right now. They notice small changes around them and react strongly to immediate experiences. Adults often split their attention between the present and the future, such as when thinking about schedules, work responsibilities, and plans. When attention is scattered or set on ‘what’s next,’ the brain processes fewer details of the current moment. As a result, time can feel like it is moving faster.",
         "Studies also show that emotional states can affect time perception. When people feel bored or anxious, time may seem to drag. When they are excited or deeply engaged, time can feel quicker. Children’s emotional reactions are often more intense and direct than adults’, so this effect can be stronger for children. For example, ( A ) may feel painfully slow for children, while ( B ) can make an hour disappear.",
-        "These ideas suggest that time perception is not controlled by a single ‘clock’ in the brain. Instead, it is shaped by how richly we store experiences, how much we notice, and how strongly we feel. Understanding this can help teachers and parents: giving students more meaningful, varied experiences may not only improve learning but also make their school life feel fuller and more memorable."
+        "These ideas suggest that time perception is not controlled by a single ‘clock’ in the brain. Instead, it is shaped by how richly we store experiences, how much we notice, and how strongly we feel. {{w|Understanding this can help teachers and parents}}: giving students more meaningful, varied experiences may not only improve learning but also make their school life feel fuller and more memorable."
       ],
       questions: [
-        { id: "IV-A-1", prompt: "Why does the period feel ‘long’ when children look back?", options: ["Because children have many clear, separate memories of novel experiences.", "Because children have more free time than adults.", "Because children have rich life experiences.", "Because repeated routines create fewer memory markers."], answer: 0, explanation: "新しい経験は詳細に保存され、区別できる記憶が多く残るためです。" },
-        { id: "IV-A-2", prompt: "What is the result of adults splitting their attention between the present and the future?", options: ["They focus on schedules and time passes more slowly.", "They focus more on the present and time passes faster.", "They notice fewer details of the present and time may seem to pass faster.", "They split attention among fewer things and time passes quickly."], answer: 2, explanation: "現在の細部を処理する量が減り、時間が速く進むように感じます。" },
-        { id: "IV-A-3", prompt: "Choose the best pair for blanks A and B.", options: ["A: doing dull homework / B: watching a boring film", "A: playing a sport you love / B: waiting in a long line", "A: reading a favorite comic / B: watching a funny cartoon", "A: sitting through a boring lesson / B: playing an exciting game"], answer: 3, explanation: "退屈な時間は遅く、夢中になる時間は速く感じます。" },
-        { id: "IV-A-4", prompt: "Which best describes the main topic?", options: ["How adults manage time effectively", "How children and adults spend summer vacations", "Why adults feel time pass more slowly than children", "Why children and adults experience the passage of time differently"], answer: 3, explanation: "記憶・注意・感情の三点から、子どもと大人の時間感覚の違いを説明しています。" },
-        { id: "IV-A-5", prompt: "本文と一致する文はいくつあるか。", support: "A 子どもの強い感情は大人以上に時間感覚へ影響しうる。 B 認知心理学と神経科学の研究は中止された。 C 時間感覚は年齢を通じほぼ変わらない。 D 夏休みが長く感じるのは子どもの自由時間が多いからだ。 E 時間感覚は記憶・注意・感情・性格で形づくられる。", options: ["0", "1", "2", "3", "4", "5"], answer: 1, explanation: "一致するのはAのみ。Eには本文にない personality が加わっています。" }
-      ]
-    },
-    {
-      id: "IV-B",
-      label: "第IV問 B",
-      title: "長文読解：内容説明",
-      description: "最終段落の下線部を日本語で説明します。採点基準と解答例を見て自己採点します。",
-      sourceImages: ["PXL_20260716_095026343.jpg"],
-      questions: [
-        { id: "IV-B-1", type: "self", prompt: "『これを理解することは、教師や保護者の助けになるだろう』の『これ』の内容を日本語で説明しなさい。", rubric: ["経験をどれだけ豊かに記憶するか", "現在の出来事にどれだけ注意を向けるか", "どれだけ強く感情を抱くか", "これらにより時間の感じ方が形づくられること"], model: "私たちが経験をどれだけ豊かに記憶し、現在にどれだけ注意を向け、どれだけ強く感情を抱くかによって、時間の感じ方が形づくられるということ。" }
+        { id: "IV-A-1", prompt: "【A 問1】Why does the period feel ‘long’ when children look back?", options: ["Because children have many clear, separate memories of novel experiences.", "Because children have more free time than adults.", "Because children have rich life experiences.", "Because repeated routines create fewer memory markers."], answer: 0, explanation: "新しい経験は詳細に保存され、区別できる記憶が多く残るためです。" },
+        { id: "IV-A-2", prompt: "【A 問2】What is the result of adults splitting their attention between the present and the future?", options: ["They focus on schedules and time passes more slowly.", "They focus more on the present and time passes faster.", "They notice fewer details of the present and time may seem to pass faster.", "They split attention among fewer things and time passes quickly."], answer: 2, explanation: "現在の細部を処理する量が減り、時間が速く進むように感じます。" },
+        { id: "IV-A-3", prompt: "【A 問3】Choose the best pair for blanks A and B.", options: ["A: doing dull homework / B: watching a boring film", "A: playing a sport you love / B: waiting in a long line", "A: reading a favorite comic / B: watching a funny cartoon", "A: sitting through a boring lesson / B: playing an exciting game"], answer: 3, explanation: "退屈な時間は遅く、夢中になる時間は速く感じます。" },
+        { id: "IV-A-4", prompt: "【A 問4】Which best describes the main topic?", options: ["How adults manage time effectively", "How children and adults spend summer vacations", "Why adults feel time pass more slowly than children", "Why children and adults experience the passage of time differently"], answer: 3, explanation: "記憶・注意・感情の三点から、子どもと大人の時間感覚の違いを説明しています。" },
+        { id: "IV-A-5", prompt: "【A 問5】本文と一致する文はいくつあるか。", support: "A 子どもの強い感情は大人以上に時間感覚へ影響しうる。 B 認知心理学と神経科学の研究は中止された。 C 時間感覚は年齢を通じほぼ変わらない。 D 夏休みが長く感じるのは子どもの自由時間が多いからだ。 E 時間感覚は記憶・注意・感情・性格で形づくられる。", options: ["0", "1", "2", "3", "4", "5"], answer: 1, explanation: "一致するのはAのみ。Eには本文にない personality が加わっています。" },
+        { id: "IV-B-1", type: "self", prompt: "【B 問1】最終段落の波線部 Understanding this can help teachers and parents について、『これ』が指す内容を日本語で説明しなさい。", support: "解答後に採点基準と解答例を表示し、自己採点します。", rubric: ["経験をどれだけ豊かに記憶するか", "現在の出来事にどれだけ注意を向けるか", "どれだけ強く感情を抱くか", "これらにより時間の感じ方が形づくられること"], model: "私たちが経験をどれだけ豊かに記憶し、現在にどれだけ注意を向け、どれだけ強く感情を抱くかによって、時間の感じ方が形づくられるということ。" }
       ]
     }
   ]
