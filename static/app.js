@@ -65,22 +65,33 @@
     return question.type === "self" ? record?.selfResult === "ok" : record?.correct === true;
   }
 
+  function wrongQuestions(questions) {
+    return questions.filter((question) => isComplete(question) && !isCorrect(question));
+  }
+
+  function sectionsWithWrong() {
+    return exam.sections.filter((section) => wrongQuestions(section.questions).length);
+  }
+
   function sectionStats(section) {
     const total = section.questions.length;
     const complete = section.questions.filter(isComplete).length;
     const correct = section.questions.filter(isCorrect).length;
-    return { total, complete, correct };
+    const wrong = wrongQuestions(section.questions).length;
+    return { total, complete, correct, wrong };
   }
 
   function renderProgress() {
     const questions = allQuestions();
     const complete = questions.filter(isComplete).length;
+    const correct = questions.filter(isCorrect).length;
     const total = questions.length;
-    const wrong = questions.filter((question) => isComplete(question) && !isCorrect(question));
+    const wrong = wrongQuestions(questions);
     $("#progressText").textContent = `${complete} / ${total} 完了`;
+    $("#progressBreakdown").textContent = complete ? `正答 ${correct}・要復習 ${wrong.length}` : "まだ解答がありません";
     $("#progressFill").style.width = total ? `${Math.round(complete / total * 100)}%` : "0%";
     $("#reviewBtn").disabled = !reviewOnly && wrong.length === 0;
-    $("#reviewBtn").title = wrong.length ? `${wrong.length}問の間違いを表示` : "間違えた問題はありません";
+    $("#reviewBtn").title = wrong.length ? `${wrong.length}問の間違いだけを表示` : "間違えた問題はありません";
     renderPrimaryAction();
   }
 
@@ -93,20 +104,27 @@
   function renderPrimaryAction() {
     const questions = allQuestions();
     const incomplete = questions.filter((question) => !isComplete(question));
-    const wrong = questions.filter((question) => isComplete(question) && !isCorrect(question));
+    const wrong = wrongQuestions(questions);
     const next = nextStudySection();
     const label = $("#continueBtn .cta-label");
     const target = $("#continueTarget");
-    if (incomplete.length) {
+    if (incomplete.length === questions.length) {
+      label.textContent = "はじめる";
+      target.textContent = `${next.label} ${next.title}・全${questions.length}問`;
+    } else if (incomplete.length) {
       label.textContent = "つづきから解く";
       target.textContent = `${next.label} ${next.title}・残り${incomplete.length}問`;
     } else if (wrong.length) {
-      label.textContent = "間違えた問題を復習";
-      target.textContent = `${wrong.length}問をもう一度確認`;
+      label.textContent = `要復習の${wrong.length}問を解き直す`;
+      target.textContent = `${sectionsWithWrong().map((section) => section.label).join("・")}`;
     } else {
       label.textContent = "最初から見直す";
       target.textContent = `全${questions.length}問の演習は完了しています`;
     }
+  }
+
+  function countBadge(wrong) {
+    return wrong ? `<b class="wrong-badge">要復習 ${wrong}</b>` : "";
   }
 
   function renderSectionList() {
@@ -115,21 +133,21 @@
       const sections = group.sectionIds.map((id) => exam.sections.find((section) => section.id === id)).filter(Boolean);
       const totals = sections.reduce((sum, section) => {
         const stats = sectionStats(section);
-        return { complete: sum.complete + stats.complete, total: sum.total + stats.total };
-      }, { complete: 0, total: 0 });
+        return { complete: sum.complete + stats.complete, total: sum.total + stats.total, wrong: sum.wrong + stats.wrong };
+      }, { complete: 0, total: 0, wrong: 0 });
       const isActiveGroup = group.sectionIds.includes(currentSectionId);
       const items = sections.map((section) => {
         const stats = sectionStats(section);
         const isActive = section.id === currentSectionId;
         return `<button type="button" class="section-item${isActive ? " active" : ""}" data-section="${section.id}">
           <span><small>${section.label}</small><strong>${section.title}</strong></span>
-          <em>${stats.complete}/${stats.total}</em>
+          <em>${stats.complete}/${stats.total}${countBadge(stats.wrong)}</em>
         </button>`;
       }).join("");
       return `<details class="section-group" data-group="${group.id}"${isActiveGroup ? " open" : ""}>
         <summary>
           <span><small>${group.step}</small><strong>${group.label}</strong></span>
-          <em>${totals.complete}/${totals.total}</em>
+          <em>${totals.complete}/${totals.total}${countBadge(totals.wrong)}</em>
         </summary>
         <div class="section-group-items">${items}</div>
       </details>`;
@@ -285,10 +303,32 @@
       </div>`;
     }
     if (!record.graded) return "";
-    return `<div class="result-box ${record.correct ? "ok" : "ng"}">
+    return `<div class="result-box ${record.correct ? "ok" : "ng"}" role="status">
       <p class="result-label">${record.correct ? "正解" : "不正解"}</p>
       <p>${question.explanation}</p>
     </div>`;
+  }
+
+  function jumpButtonsHtml() {
+    return sectionsWithWrong()
+      .map((section) => `<button type="button" class="ghost jump-section" data-jump="${section.id}">${section.label}（${wrongQuestions(section.questions).length}問）</button>`)
+      .join("");
+  }
+
+  function completionPanelHtml() {
+    const questions = allQuestions();
+    if (reviewOnly || questions.some((question) => !isComplete(question))) return "";
+    const correct = questions.filter(isCorrect).length;
+    const wrong = wrongQuestions(questions);
+    const detail = wrong.length
+      ? `<p>要復習は ${wrong.length}問です。下の大問から解き直せます。</p><div class="completion-jumps">${jumpButtonsHtml()}</div>`
+      : `<p>要復習はありません。時間を置いてもう一度解くと定着を確認できます。</p>`;
+    return `<section class="completion-panel panel" role="status">
+      <p class="eyebrow">ALL DONE</p>
+      <h2>全${questions.length}問の演習が終わりました</h2>
+      <p class="completion-score"><strong>正答 ${correct}</strong> / ${questions.length}問</p>
+      ${detail}
+    </section>`;
   }
 
   function renderSection() {
@@ -302,12 +342,20 @@
     if (!section.questions.length) {
       body = `<div class="empty-state"><strong>音源待ち</strong><p>${section.description}</p><p>放送原稿または音声ファイルを追加すれば、この章も通常の演習にできます。</p></div>`;
     } else if (!visibleQuestions.length) {
-      body = `<div class="empty-state"><strong>この章に要復習問題はありません</strong><p>静かな章です。通常表示へ戻すと全問を確認できます。</p></div>`;
+      const elsewhere = sectionsWithWrong();
+      body = `<div class="empty-state">
+        <strong>この大問に要復習はありません</strong>
+        ${elsewhere.length
+          ? `<p>要復習は次の大問にあります。</p><div class="completion-jumps">${jumpButtonsHtml()}</div>`
+          : `<p>すべての大問で要復習はありません。「すべての問題に戻る」で全問を確認できます。</p>`}
+      </div>`;
     } else {
       body = `<div class="question-list">${visibleQuestions.map((question) => questionHtml(question, section.questions.indexOf(question) + 1)).join("")}</div>`;
     }
 
-    $("#sectionView").innerHTML = `<section class="section-header panel">
+    $("#sectionView").innerHTML = `${completionPanelHtml()}
+    ${reviewOnly ? `<p class="review-flag">要復習の問題だけを表示しています<button type="button" class="text-button exit-review">すべての問題に戻る</button></p>` : ""}
+    <section class="section-header panel">
       <div><p class="eyebrow">${section.label}</p><h2>${section.title}</h2><p>${section.description}</p></div>
       ${sourceImagesHtml(section)}
     </section>
@@ -331,6 +379,11 @@
     });
 
     $$(".image-button").forEach((button) => button.addEventListener("click", () => showImage(section, button.dataset.image, button.dataset.imageIndex)));
+    $$(".jump-section").forEach((button) => button.addEventListener("click", () => {
+      reviewOnly = true;
+      openSection(button.dataset.jump);
+    }));
+    $(".exit-review")?.addEventListener("click", () => { reviewOnly = false; rerender(); });
     $("#prevSectionBtn")?.addEventListener("click", () => moveSection(-1));
     $("#nextSectionBtn")?.addEventListener("click", () => moveSection(1));
   }
@@ -456,11 +509,17 @@
     renderProgress();
     renderSectionList();
     renderSection();
-    $("#reviewBtn").textContent = reviewOnly ? "すべての問題に戻る" : "間違えた問題を復習";
+    $("#reviewBtn").textContent = reviewOnly ? "すべての問題に戻る" : "間違えた問題だけ表示";
   }
 
   $("#continueBtn").addEventListener("click", continueStudy);
-  $("#reviewBtn").addEventListener("click", () => { reviewOnly = !reviewOnly; rerender(); });
+  $("#reviewBtn").addEventListener("click", () => {
+    reviewOnly = !reviewOnly;
+    const current = exam.sections.find((section) => section.id === currentSectionId);
+    const target = reviewOnly && !wrongQuestions(current?.questions || []).length ? sectionsWithWrong()[0] : null;
+    if (target) openSection(target.id);
+    else rerender();
+  });
   $("#printBtn").addEventListener("click", () => window.print());
   $("#resetBtn").addEventListener("click", () => {
     if (!window.confirm("この端末に保存した解答と進捗をすべて削除します。よろしいですか？")) return;
