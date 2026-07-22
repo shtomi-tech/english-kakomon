@@ -110,7 +110,7 @@ window.ENGLISH_EXAM = {
       sourceImages: ["PXL_20260716_094914936.jpg", "PXL_20260716_095149090.jpg"],
       questions: [
         { id: "III-B-1", type: "fields", prompt: "So, the car industry has [ c　　 ] many jobs [ i　　 ] as well.", support: "第III問Aの本文中の波線部「つまり、自動車産業は、間接的にもたくさんの仕事を生み出しているのね。」に、ほぼ相当する意味になるようにします。与えられた文字で始まる語を、各空所に1語ずつ入れてください。", fields: [{label:"c...",answers:["created"]},{label:"i...",answers:["indirectly"]}], explanation: "『自動車産業は間接的にも多くの仕事を生み出した』なので created / indirectly。" },
-        { id: "III-B-2", type: "fields", prompt: "『さまざまな要因により、日本の1人当たりのGDPは比較的低い。』", support: "Japan’s GDP [ 2語 ] is relatively low, [ 1語 ] to a variety of factors.", fields: [{label:"2語",answers:["per capita"]},{label:"1語",answers:["due"]}], explanation: "本文中の per capita と、due to を用います。" }
+        { id: "III-B-2", type: "fields", prompt: "『さまざまな要因により、日本の1人当たりのGDPは比較的低い。』", support: "Japan’s GDP [ 2語 ] is relatively low, [ 1語 ] to a variety of factors.\n※1つ目の空所（2語）は、第III問Aの本文にある語句を必ず用いてください。", fields: [{label:"2語",answers:["per capita"]},{label:"1語",answers:["due"]}], explanation: "本文中の per capita と、due to を用います。" }
       ]
     },
     {
