@@ -108,6 +108,7 @@ h1, h2, h3, p { margin-top: 0; }
 .passage-mark .mark-text { border-bottom: 2px solid var(--ink); padding-bottom: 1px; font-weight: 600; }
 .passage-blank { display: inline-block; border-bottom: 2px solid var(--ink); padding: 0 .35em; font-weight: 600; white-space: nowrap; }
 .passage-blank .blank-no { padding: 0 .5em; font: 700 13px var(--mono); }
+.passage-wave { padding-bottom: 2px; font-weight: 600; text-decoration: underline wavy var(--ink); text-decoration-thickness: 1.5px; text-underline-offset: 4px; }
 .has-passage .question-prompt { line-height: 1.65; }
 .has-passage .choice { font-size: 15px; line-height: 1.65; }
 .question-list { display: flex; flex-direction: column; gap: 16px; }
